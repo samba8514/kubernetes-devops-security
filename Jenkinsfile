@@ -19,6 +19,11 @@ pipeline {
               }
             }
         }
+        stage('Docker Login') {
+            steps {
+                sh 'echo "your-password" | docker login -u your-username --password-stdin'
+            }
+        }
         stage('Docker build and push') {
                 steps {
                   sh "printenv"
