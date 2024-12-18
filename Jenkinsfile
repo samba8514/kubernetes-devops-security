@@ -36,13 +36,7 @@ pipeline {
                 }
             } 
         stage('List pods') {
-        withKubeConfig([credentialsId: '<credential-id>',
-                        caCertificate: '<ca-certificate>',
-                        serverUrl: '<api-server-address>',
-                        contextName: '<context-name>',
-                        clusterName: '<cluster-name>',
-                        namespace: '<namespace>'
-                        ]) {
+        withKubeConfig([credentialsId: 'kubeconfig']) {
           sh 'kubectl get pods'
         }
       }
