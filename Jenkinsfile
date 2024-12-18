@@ -22,8 +22,8 @@ pipeline {
         stage('Docker build and push') {
                 steps {
                   sh "printenv"
-                  sh 'docker build -t samba/numeric-app:""$GIT_COMMIT"" .'
-                  sh 'docker push samba/numeric-app:""$GIT_COMMIT""'
+                  sh 'docker build -t samba8514/numeric-app:""$GIT_COMMIT"" .'
+                  sh 'docker push samba8514/numeric-app:""$GIT_COMMIT""'
                 }
             }  
     }
