@@ -34,6 +34,17 @@ pipeline {
                   sh 'docker build -t samba8514/numeric-app:""$GIT_COMMIT"" .'
                   sh 'docker push samba8514/numeric-app:""$GIT_COMMIT""'
                 }
-            }  
+            } 
+        stage('List pods') {
+        withKubeConfig([credentialsId: '<credential-id>',
+                        caCertificate: '<ca-certificate>',
+                        serverUrl: '<api-server-address>',
+                        contextName: '<context-name>',
+                        clusterName: '<cluster-name>',
+                        namespace: '<namespace>'
+                        ]) {
+          sh 'kubectl get pods'
+        }
+      }
     }
 }
