@@ -21,7 +21,11 @@ pipeline {
         }
         stage('Docker Login') {
             steps {
-                sh 'echo "your-password" | docker login -u your-username --password-stdin'
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
+                                                 usernameVariable: 'DOCKER_USERNAME', 
+                                                 passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                }
             }
         }
         stage('Docker build and push') {
